@@ -1,0 +1,36 @@
+How To Process Input
+- Create a list of 10,000 positions making a closed hash table
+- Each position of the hash table will hold the URLaddress and an array of
+all visit_timestamps of that URL so that we can easily calculate how many
+times that URL has been visited
+- Hash the URL to a unique value
+- Hash Function:
+	iterate through each character in the URL
+		total = total + ord(name[i])
+
+	total = total % len(hash table)
+
+- The total is the index you place the URL and visit_timestamp in
+- If the index that the URL is supposed to be put in is already filled then
+append the visit_timestamp to the array holding all the previous 
+visit_timestamps
+- The length of this array is equal to the amount of times that URL was
+visited
+- Arrange the hash table into a maxheap priority queue where the highest 
+priority is the URL with greatest visit_timestamp array length
+- This is so the most visited URL's are easily accessible
+
+
+How to Generate Output
+- To retrieve the most visited URL you just have to access the first index
+of the maxheap priority queue.
+
+
+Concerns
+- Different URL's can have the same total value which can mess up the
+visited count for the URL's with the same total because a different
+URLaddress will be appended its visit_timestamp to the wrong
+visit_timestamp array
+- Since different URL's can have the same total that means one of the URL's
+will be left out of the hash table as well because it will append the
+visit_timestamp to a different URLaddress rather than its own
